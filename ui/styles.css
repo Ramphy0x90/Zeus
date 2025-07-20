@@ -1,0 +1,96 @@
+/* Navigation styles */
+Navigation {
+    layout: horizontal;
+    padding: 0 1;
+    border-bottom: solid $accent;
+    background: $surface;
+}
+
+Navigation .nav-item {
+    width: auto;
+    border: solid $accent;
+    background: $surface;
+    color: $text;
+    text-align: center;
+    min-width: 10;
+    content-align: center middle;
+}
+
+Navigation .nav-item:hover {
+    color: $accent;
+}
+
+Navigation .nav-item.active {
+    color: $accent;
+}
+
+
+Select {
+    width: 60;
+    margin: 3;
+}
+
+/* Main layout */
+.app-wrapper {
+    layout: grid;
+    grid-size: 3;
+    height: 1fr;
+}
+
+.app-body {
+    column-span: 1;
+    height: 100%;
+    border: solid $accent;
+}
+
+.grid-viewer {
+    column-span: 2;
+    height: 100%;
+    border: solid $accent;
+}
+
+/* Page styles */
+.page {
+    display: none;
+    height: 1fr;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Page titles and sections */
+.page-title {
+    height: 2;
+    text-align: center;
+    text-style: bold;
+    color: $accent;
+    border-bottom: solid $accent;
+    margin-bottom: 1;
+}
+
+.section-title {
+    height: 1;
+    text-style: bold;
+    color: $accent;
+    margin-bottom: 1;
+}
+
+.subsection-title {
+    height: 1;
+    text-style: italic;
+    margin-top: 1;
+}
+
+.grid-info {
+    height: 1;
+    text-align: center;
+    color: $accent;
+    text-style: italic;
+    margin-bottom: 1;
+}
+
+.constraint {
+    margin-left: 2;
+    color: $text-muted;
+}
