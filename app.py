@@ -24,38 +24,18 @@ class ZeusApp(App):
         
         with Horizontal(classes="app-wrapper"):
             with Vertical(classes="app-body"):
-                yield Vertical(
-                    EditorPage(id="editor-page", classes="page active"),
-                    PowerFlowPage(id="powerflow-page", classes="page"),
-                    HostingCapacityPage(id="hosting-page", classes="page"),
-                    id="page-container"
-                )
+                yield BodyView()
             with Vertical(classes="grid-viewer"):
                 yield SchematicView()
 
         yield Footer()
 
     def on_navigation_page_changed(self, event: Navigation.PageChanged):
-        """Handle navigation page changes"""
-        self.sub_title = event.page_name
-        self.action_switch_page(event.page_name)
-
-    def action_switch_page(self, page_name: str):
-        """Switch to a different page"""
-        # Hide all pages
-        for page in self.query(".page"):
-            page.remove_class("active")
-        
-        # Show selected page
-        target_page = self.query_one(f"#{page_name}-page")
-        if target_page:
-            target_page.add_class("active")
-
-    def on_select_changed(self, event: Select.Changed):
-        """Handle grid selection changes"""
-        if event.select.id == "grid-select":
-            selected_grid = event.value
-            # self.notify(f"Selected grid: {selected_grid}")
+        """Handle navigation page changes and forward to BodyView"""
+        # Forward the message to the BodyView component
+        body_view = self.query_one("BodyView")
+        if body_view:
+            body_view.post_message(BodyView.PageChangeRequest(event.page_name))
 
 if __name__ == "__main__":
     app = ZeusApp()
